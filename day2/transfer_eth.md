@@ -1,4 +1,4 @@
-# ส่ง Eth 
+# การโอนและส่ง Eth 
 
 . เปิด Ganache 
 2. เปิด Terminal ในโปรเจค GreetingTruffle 
