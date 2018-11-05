@@ -1,13 +1,35 @@
 # blockchain-beginner
 Example code workshop for Blockchain for developer training at https://www.nextflow.in.th
 
+## Resource
+
+- [Presentation](https://www.dropbox.com/s/kzoa891iv5dedif/Blockchain%20for%20Developer.pdf?dl=0)
+
 ## Day 1 Workshop
+
+### Check truffle
+
+1. เปิด Terminal (Powershell) 
+2. รันคำสั่งเช็คเวอร์ชั่นของ trufflee
+
+```pwsh
+truffle --version
+```
+
+3. ถ้ายังไม่ได้ติดตั้ง ให้รันคำสั่ง
+
+```pwsh
+npm i -g truffle
+```
+
+### Let's try Smart Contract
 
 1. เปิดโฟลเดอร์ workshop **greetingTruffle** ใน Terminal
 2. สังเกตดูโครงสร้างของโปรเจค
 3. รันคำสั่ง deploy Smart Contract ตัวอย่าง
 
-```js
+
+```pwsh
 truffle migrate --network ganache
 ```
 
@@ -15,7 +37,7 @@ truffle migrate --network ganache
 5. สังเกตโฟลเดอร์ build ในโปรเจค
 6. กลับมาที่ terminal รันคำสั่งเปิด Console 
 
-```js
+```pwsh
 truffle console --network ganache
 ```
 
