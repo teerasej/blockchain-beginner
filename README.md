@@ -7,7 +7,7 @@ Example code workshop for Blockchain for developer training at https://www.nextf
 
 ## Day 1 Workshop
 
-- [Project](https://www.dropbox.com/sh/bfhjv1lvcci6igy/AACDB9hOC6wOmotJhhWywF27a?dl=0)
+- [Project](https://www.dropbox.com/s/scnhm7qse3uxl6v/greetingTruffle.zip?dl=0)
 
 ### Check truffle
 
