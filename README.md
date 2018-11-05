@@ -8,6 +8,7 @@ Example code workshop for Blockchain for developer training at https://www.nextf
 ## Day 1 Workshop
 
 - [Project](https://www.dropbox.com/s/scnhm7qse3uxl6v/greetingTruffle.zip?dl=0)
+- [Bitcoin stolen tracking](https://www.reddit.com/r/Bitcoin/comments/5vr8xg/confirmed_120000_bitcoins_from_the_bitfinex_hack/de4e4nf/)
 
 ### Check truffle
 
