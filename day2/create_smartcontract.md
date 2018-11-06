@@ -1,4 +1,4 @@
-# Deploy Smart Contract with truffle
+# Create Smart Contract with truffle
 
 1. สร้างโฟลเดอร์ `Training/GreetingsTruffle`
 2. เปิด terminal มาที่โฟลเดอร์ดังกล่าว
