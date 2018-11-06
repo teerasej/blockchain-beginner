@@ -2,56 +2,55 @@
 
 ## สร้าง Genesis Block 
 
-สร้าง folder ผ่าน Powershell
+1. สร้าง folder ผ่าน Powershell
 
 ```bash
 mkdir -p ~/ChainSkills/private
 cd ChainSkills/private
 ```
 
-รันคำสั่ง
+2. รันคำสั่ง
 
 ```bash
 puppeth
 ```
 
-ตั้งชื่อ Network
+3. ตั้งชื่อ Network
 
 ```bash
 ChainSkills
 ```
 
-กด 2 เพื่อเลือกคำสั่งสร้าง Configure new genesis
+4. กด 2 เพื่อเลือกคำสั่งสร้าง Configure new genesis
+5. กด 1 เลือก `Ethash - proof of work`
 
-กด 1 เลือก `Ethash - proof of work`
+6. ปล่อยค่า accounts pretended เป็น `0x`
 
-ปล่อยค่า accounts pretended เป็น `0x`
-
-กำหนด network ID เป็น `4224`
+7. กำหนด network ID เป็น `4224`
 
 
 ## Export genesis block
 
-เลือก `2. Manage existing genesis`
-
-เลือก `2. Export genesis configuration`
-
-กำหนดไฟล์ หรือปล่อยเป็นค่าเริ่มต้นก็ได้ 
-
-จะเห็นข้อความ ` Exported existing genesis block`
-
-เรียบร้อยแล้วให้ปิด puppeth โดยการใช้ Ctrl + C
+1. เลือก `2. Manage existing genesis`
+2. เลือก `2. Export genesis configuration`
+3. กำหนดไฟล์ หรือปล่อยเป็นค่าเริ่มต้นก็ได้ 
+4. จะเห็นข้อความ ` Exported existing genesis block`
+5. เรียบร้อยแล้วให้ปิด puppeth โดยการใช้ Ctrl + C
 
 ## สร้าง Private Node
+
+รันคำสั่งสร้างโปรเจคที่จัดการข้อมูลใน Private Node
 
 ```bash
 geth --datadir . init Nextflow.json
 ```
 
-- folder geth เก็บ network
-- folder keystore เก็บ account
+- folder **geth** เก็บ network
+- folder **keystore** เก็บ account
 
 ## สร้าง account
+
+รันคำสั่งสร้าง Account ใน Node
 
 ```bash
 geth --datadir . account new
@@ -65,7 +64,7 @@ geth --datadir . account new
 Address: {a3e095d7d89990c238f47e394f4f1bdc4c8fcdff}
 ```
 
-** สร้างทั้งหมด 3 account **
+> สร้างทั้งหมด 3 account
 
 ลองใช้คำสั่งเข้าไปดูไฟล์ใน keystore
 
@@ -81,7 +80,7 @@ geth --datadir . account list
 
 ## สั่งรัน cmd เปิด private node
 
-1. Download ไฟล์คำสั่ง
+1. [Download ไฟล์คำสั่ง](https://www.dropbox.com/s/gafk3ylkmywi9uh/startnode.cmd.zip?dl=0)
 2. แตกไฟล์คำสั่งไปไว้ในโฟลเดอร​์ `private`
 3. รันคำสั่ง เพื่อเริ่มการทำงานของ Node
 
@@ -89,21 +88,22 @@ geth --datadir . account list
 .\startnode.cmd
 ```
 
-## ต่อ JavaScript Console
+## ติดต่อกับ Private Node ผ่าน JavaScript Console
 
-เปิดหน้าต่าง Powershell ใหม่ 
+1.  เปิดหน้าต่าง Powershell ใหม่ 
 
 ```pwsh
  geth attach ipc:\\.\pipe\geth.ipc
 ```
 
+2. รันคำสั่งดูข้อมูลใน Private Node
 
 ```js
 eth.accounts
 eth.coinbasee
 ```
 
-ดูจำนวน ether ใน account
+3. ดูจำนวน ether ใน account
 
 ```js
 eth.getBalance(eth.coinbase)
@@ -111,30 +111,31 @@ eth.getBalance(eth.accounts[1])
 ```
 
 
-แปลงค่า Wei เป็น Ether
+4. แปลงค่า Wei เป็น Ether
 
 ```js
 web3.fromWei(eth.getBalance(eth.coinbase), "ether");
 ```
 
-สั่งหยุด หรือเริ่ม miner
+5. สั่งหยุด หรือเริ่ม miner
 
 ```bash
 miner.stop()
 miner.start(1) // with a thread 
 ```
 
-ปลดล๊อค account
+6. ปลดล๊อค account
 
 ```bash
 personal.unlockAccount(eth.accounts[1], "1234", 300);
 ```
+### คำอธิบาย Parameter
 
 1. account
 2. รหัสผ่าน
 3. ปลดล๊อคเป็นเวลา milliseconds หากไม่กำหนดจะเป็็น 10 นาที
 
-โอนจากบัญชี 1 ไปยังอีกบัญชีหนึ่ง
+## โอนจากบัญชี 1 ไปยังอีกบัญชีหนึ่ง
 
 ```bash
 eth.sendTransaction({
@@ -143,6 +144,8 @@ eth.sendTransaction({
 	value: web3.toWei(10, "ether")
 })
 ```
+
+### คำอธิบาย Parameter
 
 1. Address ที่จะโอนออก
 2. Address ที่จะโอนเข้า
