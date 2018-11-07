@@ -25,7 +25,7 @@ geth --rinkeby account new
 
 2. สมัคร Twitter และวาง address ของ account ที่สร้างลงไปใน tweet
 3. Copy ลิ้งค์ของ Tweet เราจะเอาไปขอ Ether
-4. รันคำสั่งสร้าง node เชื่อมกับ rinkeby network
+4. รันคำสั่งสร้าง node เชื่อมกับ rinkeby network ([ดาวน์โหลดคำสั่งได้ที่นี่](https://www.dropbox.com/s/e2nme9ihlu1fbh5/startrinkeby.cmd.zip?dl=0))
 
 ```pwsh
 ./startrinkeby.cmd
