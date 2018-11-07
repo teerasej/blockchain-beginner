@@ -52,8 +52,8 @@ App = {
 displayAccountInfo: function() {
 	web3.eth.getCoinbase(function(err, balance){
 		if(err === null){
-			App.account = account;
-			$('#account').text(account);
+			App.account = balance;
+			$('#account').text(balance);
 			
 			web3.eth.getBalance(account, function(err, balance) {
               if(err === null) {
