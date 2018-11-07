@@ -19,7 +19,7 @@ npm run dev
 ## สร้าง User Interface
 
 1. เปิดไฟล์ `src\index.html`
-2. คัดลอกโค้ดจาก `resources\chainlist\01\index.html` มาวาง
+2. [ดาวน์โหลด index.html](https://www.dropbox.com/s/iligklb6g4u1x3k/index.html.zip?dl=0)และคัดลอกโค้ดมาวาง
 3. บันทึกไฟล์ และรอให้ server reload
 4. สังเกต HTML ดังต่อไปนี้
 
