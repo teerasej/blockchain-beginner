@@ -13,7 +13,19 @@ geth --rinkeby
 4. สังเกตการทำงานของ node
 5. ปิดการทำงาน
 
-## สร้าง account บน Rinkeby 
+## สร้าง account บน Rinkeby ด้วย MetaMask
+
+
+## รับ ETH ผ่าน Rinkerby Faucet
+
+1. สร้าง Address บน Rinkerby Network ผ่าน Meta Mask
+2. สมัคร Twitter และวาง address ของ account ที่สร้างลงไปใน tweet
+3. Copy ลิ้งค์ของ Tweet เราจะเอาไปขอ Ether
+4. เปิดเว็บ [https://www.rinkeby.io/#faucet](https://www.rinkeby.io/#faucet)
+5. วาง link ของ Tweet ลงไป และกดขอ Ether จากตัวเลือกด้านขวา
+
+
+## สร้าง account บน Rinkeby ผ่าน Console 
 
 1. สร้าง account 
 
@@ -23,16 +35,13 @@ geth --rinkeby account new
 
 ไฟล์ account ของ windows จะอยู่ใน `%APPDATA%\Ethereum\rinkeby`
 
-2. สมัคร Twitter และวาง address ของ account ที่สร้างลงไปใน tweet
-3. Copy ลิ้งค์ของ Tweet เราจะเอาไปขอ Ether
-4. รันคำสั่งสร้าง node เชื่อมกับ rinkeby network ([ดาวน์โหลดคำสั่งได้ที่นี่](https://www.dropbox.com/s/e2nme9ihlu1fbh5/startrinkeby.cmd.zip?dl=0))
+
+2. รันคำสั่งสร้าง node เชื่อมกับ rinkeby network ([ดาวน์โหลดคำสั่งได้ที่นี่](https://www.dropbox.com/s/e2nme9ihlu1fbh5/startrinkeby.cmd.zip?dl=0))
 
 ```pwsh
 ./startrinkeby.cmd
 ```
 
-5. เปิดเว็บ [https://www.rinkeby.io/#faucet](https://www.rinkeby.io/#faucet)
-6. วาง link ของ Tweet ลงไป และกดขอ Ether จากตัวเลือกด้านขวา
 
 
 ## สร้าง node ที่ใช้ Deploy Smart Contract
@@ -42,7 +51,6 @@ geth --rinkeby account new
 ```pwsh
 ./startrinkeby.cmd
 ```
-
 
 2. เชื่อมต่อ console กับ Node
 

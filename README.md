@@ -3,6 +3,7 @@ Example code workshop for Blockchain for developer training at https://www.nextf
 
 ## Resource
 
+- [เข้าร่วม Facebook Group](https://bit.ly/2PjMmKQ)
 - [Presentation](https://www.dropbox.com/s/kzoa891iv5dedif/Blockchain%20for%20Developer.pdf?dl=0)
 
 ## Day 1 Workshop
