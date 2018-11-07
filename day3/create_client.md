@@ -8,7 +8,7 @@ npm install
 ```
 
 3. รันคำสั่ง เพื่อรัน web server
-
+ไ
 ```js
 npm run dev
 ```
