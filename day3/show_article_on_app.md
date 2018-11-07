@@ -50,19 +50,31 @@ App = {
 
 ```js
 displayAccountInfo: function() {
-	web3.eth.getCoinbase(function(err, balance){
-		if(err === null){
-			App.account = balance;
-			$('#account').text(balance);
-			
-			web3.eth.getBalance(account, function(err, balance) {
-              if(err === null) {
-                $('#accountBalance').text(web3.fromWei(balance, "ether") + " ETH");
+
+        web3.eth.getCoinbase(function(err, balance){
+              if(err === null){
+                  console.log("No error");
+
+                  App.account = balance;
+                  console.log(balance);
+                  $('#account').text(balance);
+
+                  web3.eth.getBalance(balance, function(err, balance){
+                        if(err === null){
+                              console.log(balance, " Wei");
+                              var ether = web3.fromWei(balance, "ether");
+                              $("#accountBalance").text(ether + " Eth");
+                        } else {
+                              console.log(err);
+                        }
+                  })
+
+              } else {
+                  console.log(err);
               }
-            })
-		}
-	})
-},
+        })
+
+     },
 ```
 
 10. เขียน function `initContract()`
