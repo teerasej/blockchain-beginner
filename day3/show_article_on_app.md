@@ -15,15 +15,16 @@ init: function() {
 6. เขียนโค้ดใน `initWeb3: function()`
 
 ```js
-initWeb3: function() {
-        App.web3Provider  = new Web3.providers.HttpProvider('http://localhost:7545');
-        
+initWeb3: function () {
 
-         web3 = new Web3(App.web3Provider);
-
-         App.displayAccountInfo();
-
-         return App.initContract();
+          if(typeof web3 !== undefined){
+               App.web3Provider = web3.currentProvider;
+          } else {
+               App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+          }
+          web3 = new Web3(App.web3Provider);
+          App.displayAccountInfo();
+          return App.initContract();
 },
 ```
 
