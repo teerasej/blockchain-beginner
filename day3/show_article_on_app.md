@@ -96,40 +96,40 @@ initContract: function() {
 11. เขียน function `reloadArticles()`
 
 ```js
-reloadArticles: function() {
-        // refresh account information because the balance might have changed
-        App.displayAccountInfo();
-    
-        // retrieve the article placeholder and clear it
-        $('#articlesRow').empty();
-    
-        App.contracts.ChainList.deployed().then(function(instance) {
-          return instance.getArticle();
-        }).then(function(article) {
-          if(article[0] == 0x0) {
-            // no article
-            return;
-          }
-    
-          // retrieve the article template and fill it
-          var articleTemplate = $('#articleTemplate');
-          articleTemplate.find('.panel-title').text(article[1]);
-          articleTemplate.find('.article-description').text(article[2]);
-          articleTemplate.find('.article-price').text(web3.fromWei(article[3], "ether"));
-    
-          var seller = article[0];
-          if (seller == App.account) {
-            seller = "You";
-          }
-          articleTemplate.find('.article-seller').text(seller);
-    
-          // add this article
-          $('#articlesRow').append(articleTemplate.html());
-        }).catch(function(err) {
-          console.error(err.message);
-        });
-      }
-    };
+reloadArticles: function () {
+          // refresh account information because the balance might have changed
+          App.displayAccountInfo();
+
+          // retrieve the article placeholder and clear it
+          $('#articlesRow').empty();
+
+          App.contracts.ChainList.deployed().then(function (instance) {
+               return instance.getArticle();
+          }).then(function (article) {
+               if (article[0] == 0x0) {
+                    // no article
+                    return;
+               }
+
+               // retrieve the article template and fill it
+               var articleTemplate = $('#articleTemplate');
+               articleTemplate.find('.panel-title').text(article[1]);
+               articleTemplate.find('.article-description').text(article[2]);
+               articleTemplate.find('.article-price').text(web3.fromWei(article[3], "ether"));
+
+               var seller = article[0];
+               if (seller == App.account) {
+                    seller = "You";
+               }
+               articleTemplate.find('.article-seller').text(seller);
+
+               // add this article
+               $('#articlesRow').append(articleTemplate.html());
+          }).catch(function (err) {
+               console.error(err.message);
+          });
+     },
+
 ```
 
 12. ทดลองปรับ Smart Contract `ChainList.sol` เพื่อสร้างข้อมูลจำลอง
