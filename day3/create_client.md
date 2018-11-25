@@ -19,7 +19,7 @@ npm run dev
 ## สร้าง User Interface
 
 1. เปิดไฟล์ `src\index.html`
-2. [ดาวน์โหลด index.html](https://www.dropbox.com/s/iligklb6g4u1x3k/index.html.zip?dl=0)และคัดลอกโค้ดมาวาง
+2. [เปิดไฟล์ index.html](https://github.com/teerasej/blockchain-beginner/blob/master/day3/src/index.html) และคัดลอกโค้ดที่เตรียมไว้มาวางในโปรเจคเพื่อสร้าง UI
 3. บันทึกไฟล์ และรอให้ server reload
 4. สังเกต HTML ดังต่อไปนี้
 
