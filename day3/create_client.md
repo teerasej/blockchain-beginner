@@ -1,5 +1,7 @@
 # สร้าง FrontEnd 
 
+## 1. เปิดการทำงานของ Web Server
+
 1. เปิด terminal มาที่โฟลเดอร์ `training/chainlist`
 2. รันคำสั่ง 
 
@@ -16,7 +18,7 @@ npm run dev
 4. เปิดไฟล์ `package.json`
 5. แก้ไขชื่อโปรเจค, เวอร์ชั่น, และช่ื่อเจ้าของเป็นของเรา
 
-## สร้าง User Interface
+## 2. สร้าง User Interface
 
 1. เปิดไฟล์ `src\index.html`
 2. [เปิดไฟล์ index.html](https://github.com/teerasej/blockchain-beginner/blob/master/day3/src/index.html) และคัดลอกโค้ดที่เตรียมไว้มาวางในโปรเจคเพื่อสร้าง UI
@@ -30,14 +32,14 @@ npm run dev
 	- `.article-price`
 	- `.article-seller`
 
-## จำลองข้อมูล
+## 3. จำลองข้อมูล
 
 1. เปิดไฟล์ `src\js\app.js`
 2. เขียนโค้ดลงไปใน `init: function(){}`
 
 ```js
 init: function() {
-          // load articleRow
+          // แสดงข้อมูลจำลองบนหน้าเว็บ
           var articlesRow = $('#articlesRow');
           var articleTemplate = $('#articleTemplate');
 

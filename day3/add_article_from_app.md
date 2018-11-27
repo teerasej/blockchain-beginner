@@ -19,13 +19,13 @@ sellArticle: function() {
 
 ```js
 sellArticle: function() {
-    // retrieve the detail of the article
+    // ถึงข้อมูลสินค้าที่จะประกาศขายผ่าน Web form 
     var _article_name = $('#article_name').val();
     var _description = $('#article_description').val();
     var _price = web3.toWei(parseFloat($('#article_price').val() || 0), "ether");
 
     if((_article_name.trim() == '') || (_price == 0)) {
-      // nothing to sell
+      // ถ้าไม่มีการใส่ชื่อสินค้า หรือกำหนดราคา ก็ถือว่าไม่มีการสร้างสินค้าเพื่อขาย
       return false;
     }
 

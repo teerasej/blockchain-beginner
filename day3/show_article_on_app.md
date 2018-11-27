@@ -83,11 +83,11 @@ displayAccountInfo: function() {
 ```js
 initContract: function() {
         $.getJSON('ChainList.json', function(chainListArtifact) {
-          // get the contract artifact file and use it to instantiate a truffle contract abstraction
+          // สร้าง object ตัวแทนของ Smart Contract 
           App.contracts.ChainList = TruffleContract(chainListArtifact);
-          // set the provider for our contracts
+          // กำหนดแหล่งบัญชีผู้ใช้ที่จะทำงานกับ Contract
           App.contracts.ChainList.setProvider(App.web3Provider);
-          // retrieve the article from the contract
+          // เรียกดูสินค้า
           return App.reloadArticles();
         });
       },
@@ -97,25 +97,27 @@ initContract: function() {
 
 ```js
 reloadArticles: function () {
-          // refresh account information because the balance might have changed
+          // เรียกดูข้อมูลผู้ใช้
           App.displayAccountInfo();
 
-          // retrieve the article placeholder and clear it
+          // ล้างข้อมูลสินค้าบนหน้าเว็บ
           $('#articlesRow').empty();
 
           App.contracts.ChainList.deployed().then(function (instance) {
                return instance.getArticle();
           }).then(function (article) {
                if (article[0] == 0x0) {
-                    // no article
+                    // ไม่มีข้อมูลสินค้า ไม่แสดง
                     return;
                }
 
-               // retrieve the article template and fill it
+               console.log(article);
+
+               // ดึงข้อมูลสินค้ามาแสดงบนหน้าเว็บ
                var articleTemplate = $('#articleTemplate');
-               articleTemplate.find('.panel-title').text(article[1]);
-               articleTemplate.find('.article-description').text(article[2]);
-               articleTemplate.find('.article-price').text(web3.fromWei(article[3], "ether"));
+               articleTemplate.find('.panel-title').text(article[2]);
+               articleTemplate.find('.article-description').text(article[3]);
+               articleTemplate.find('.article-price').text(web3.fromWei(article[4], "ether"));
 
                var seller = article[0];
                if (seller == App.account) {
@@ -123,7 +125,6 @@ reloadArticles: function () {
                }
                articleTemplate.find('.article-seller').text(seller);
 
-               // add this article
                $('#articlesRow').append(articleTemplate.html());
           }).catch(function (err) {
                console.error(err.message);

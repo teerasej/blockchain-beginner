@@ -5,12 +5,12 @@
 
 ## สร้าง Smart Contract
 
-1. สร้างโฟลเดอร์ `training/chainlist`
-2. ใช้ terminal เปิดมาที่ `training/chainlist`
+1. สร้างโฟลเดอร์ `training/shopper`
+2. ใช้ terminal เปิดมาที่ `training/shopper`
 3. รันคำสั่ง  
 
 ```pwsh
-truffle unboxes chainskills/chainskills-box
+truffle unboxes teerasej/shopper-box
 ```
 
 4. เปิดโฟลเดอร์ `contracts`
