@@ -116,39 +116,3 @@ eth.getBalance(eth.accounts[1])
 ```js
 web3.fromWei(eth.getBalance(eth.coinbase), "ether");
 ```
-
-5. สั่งหยุด หรือเริ่ม miner
-
-```bash
-miner.stop()
-miner.start(1) // with a thread 
-```
-
-6. ปลดล๊อค account
-
-```bash
-personal.unlockAccount(eth.accounts[1], "1234", 300);
-```
-### คำอธิบาย Parameter
-
-1. account
-2. รหัสผ่าน
-3. ปลดล๊อคเป็นเวลา milliseconds หากไม่กำหนดจะเป็็น 10 นาที
-
-## โอนจากบัญชี 1 ไปยังอีกบัญชีหนึ่ง
-
-```bash
-eth.sendTransaction({
-	from: eth.coinbase,
-	to: eth.accounts[1],
-	value: web3.toWei(10, "ether")
-})
-```
-
-### คำอธิบาย Parameter
-
-1. Address ที่จะโอนออก
-2. Address ที่จะโอนเข้า
-3. จำนวนที่โอน (ใช้ Web 3  แปลงค่า)
-
-ถ้าการทำงานสมบูรณ์ จะมี hash transaction แสดงขึ้นมา สามารถไปดูใน log ของ node ได้ด้วย
