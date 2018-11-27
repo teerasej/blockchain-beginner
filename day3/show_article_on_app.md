@@ -15,7 +15,7 @@ init: function() {
 6. เขียนโค้ดใน `initWeb3: function()`
 
 ```js
-initWeb3: function () {
+initWeb3: async function () {
 
           if(typeof web3 !== undefined){
                App.web3Provider = web3.currentProvider;
@@ -24,7 +24,7 @@ initWeb3: function () {
           }
           web3 = new Web3(App.web3Provider);
           App.displayAccountInfo();
-          return App.initContract();
+          return await App.initContract();
 },
 ```
 
