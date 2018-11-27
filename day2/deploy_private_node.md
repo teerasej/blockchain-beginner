@@ -5,8 +5,8 @@
 1. สร้าง folder ผ่าน Powershell
 
 ```bash
-mkdir -p ~/ChainSkills/private
-cd ChainSkills/private
+mkdir -p ~/trainig/private
+cd training/private
 ```
 
 2. รันคำสั่ง
