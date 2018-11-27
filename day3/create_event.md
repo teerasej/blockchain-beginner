@@ -38,25 +38,19 @@ function sellArticle(string _name, string _description, uint256 _price) public {
 ```js
 // buy an article
   function buyArticle() payable public {
-    // เช็คว่า มีผู้ขาย
+    
     require(seller != 0x0);
 
-    // เช็คว่าสินค้ายังไม่ถูกซืื้อ
     require(buyer == 0X0);
 
-    // กำหนดให้ผู้ขาย ไม่สามารถซื้อสินค้าของตัวเองได้
     require(msg.sender != seller);
 
-    // เช็คว่าค่าที่ส่งมากับ transaction เท่ากับราคาของสินค้า
     require(msg.value == price);
 
-    // เก็บข้อมูลของผู้ซื้อ
     buyer = msg.sender;
 
-    // อณุญาตให้ผู้ซื้อโอนจำนวนให้ผู้ขายได้
     seller.transfer(msg.value);
 
-    // สร้าง Event แจ้งเตือน
     LogBuyArticle(seller, buyer, name, price);
   }
 ```
@@ -89,27 +83,28 @@ initContract: function() {
 
 ```js
 reloadArticles: function () {
-          // เรียกดูข้อมูลผู้ใช้
           App.displayAccountInfo();
 
-          // ล้างข้อมูลสินค้าบนหน้าเว็บ
           $('#articlesRow').empty();
 
           App.contracts.ChainList.deployed().then(function (instance) {
                return instance.getArticle();
           }).then(function (article) {
                if (article[0] == 0x0) {
-                    // ไม่มีข้อมูลสินค้า ไม่แสดง
+                    
                     return;
                }
 
                console.log(article);
 
-               // ดึงข้อมูลสินค้ามาแสดงบนหน้าเว็บ
                var articleTemplate = $('#articleTemplate');
                articleTemplate.find('.panel-title').text(article[2]);
                articleTemplate.find('.article-description').text(article[3]);
-               articleTemplate.find('.article-price').text(web3.fromWei(article[4], "ether"));
+
+               // แทรกราคาเข้าไปใน ปุ่ม
+               var price = web3.fromWei(article[4], "ether");
+               articleTemplate.find('.article-price').text(price);
+               articleTemplate.find('.btn-buy').attr('data-value', price);
 
                var seller = article[0];
                if (seller == App.account) {
