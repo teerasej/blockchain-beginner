@@ -23,6 +23,7 @@ pragma solidity ^0.4.18;
 
 contract ChainList {
     
+    address buyer;
     address seller;
     string name;
     string description;
@@ -39,12 +40,13 @@ contract ChainList {
 	// get thing info
     function getArticle() public view returns (
         address _seller,
+        address _buyer,
         string _name,
         string _description,
         uint256 _price
     ) {
 
-        return (seller, name, description, price);
+        return (seller, buyer, name, description, price);
     }
 
 }
