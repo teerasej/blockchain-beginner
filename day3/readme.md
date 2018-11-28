@@ -2,8 +2,9 @@
 
 ## Resource 
 
-- [Presentation](https://www.dropbox.com/s/lf5vzqebidprpnu/Day%203.pdf?dl=0)
-- [infura.io](https://infura.io/)
+1. [Presentation](https://www.dropbox.com/s/lf5vzqebidprpnu/Day%203.pdf?dl=0)
+2. [MetaMask](https://metamask.io/)
+3. [infura.io](https://infura.io/)
 
 ## Learning Path
 
