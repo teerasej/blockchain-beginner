@@ -2,10 +2,16 @@
 
 ## Resource
 
-- [Project](https://www.dropbox.com/s/scnhm7qse3uxl6v/greetingTruffle.zip?dl=0)
 - [Bitcoin stolen tracking](https://www.reddit.com/r/Bitcoin/comments/5vr8xg/confirmed_120000_bitcoins_from_the_bitfinex_hack/de4e4nf/)
-- [MetaMask](https://github.com/teerasej/blockchain-beginner/blob/master/day1/install_metamask.md)
 - [CryptoKitties](https://www.cryptokitties.co/)
+
+## Setup MetaMask
+
+- [วิธีการติดตั้ง MetaMask](https://github.com/teerasej/blockchain-beginner/blob/master/day1/install_metamask.md)
+
+## Project Files
+
+- [Project](https://www.dropbox.com/s/scnhm7qse3uxl6v/greetingTruffle.zip?dl=0)
 
 ### Check truffle
 
@@ -27,7 +33,7 @@ npm i -g ganache-cli
 
 1. เปิดโฟลเดอร์ workshop **greetingTruffle** ใน Terminal
 2. สังเกตดูโครงสร้างของโปรเจค
-3. รันคำสั่ง deploy Smart Contract ตัวอย่าง
+3. รันคำสั่ง deploy Smart Contract ตามตัวอย่าง
 
 
 ```pwsh
@@ -69,7 +75,8 @@ app.getGreeting()
 11. รันคำสั่งเรียกใช้ Function ใน Smart Contract `setGreeting(msg)`
 
 ```js
-app.setGreeting("Hello Nextflow", {from: web3.eth.accounts[0]})
+account0 = (await web3.eth.getAccounts())[0]
+app.setGreeting("Hello Nextflow", {from: account0})
 ```
 
 
@@ -83,7 +90,10 @@ app.getGreeting()
 14. ทดลองรันคำสั่งเรียกใช้ Function ใน Smart Contract `setGreeting(msg)` โดยเปลี่ยนหมายเลข Account และสังเกตการเปลี่ยนแปลง
 
 ```js
-app.setGreeting("Jack Sparrow", {from: web3.eth.accounts[1]})
+account1 = (await web3.eth.getAccounts())[1]
 
-app.setGreeting("I'm number one", {from: web3.eth.accounts[2]})
+app.setGreeting("Tony Stark", {from: account1})
+
+account2 = (await web3.eth.getAccounts())[2]
+app.setGreeting("I'm number one", {from: account1})
 ```
