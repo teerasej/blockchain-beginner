@@ -9,4 +9,5 @@ Example code workshop for Blockchain for developer training by https://www.nextf
 
 ## Content
 
-- [World of Blockchain](day1/README.md)
+1. [World of Blockchain](day1/README.md)
+2. [Start your Blockchain network](day2/readme.md)
