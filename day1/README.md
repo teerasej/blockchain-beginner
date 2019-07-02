@@ -13,7 +13,10 @@
 
 - [Project](https://www.dropbox.com/s/txx1s9s588gr1ex/greetingTruffle2.zip?dl=0)
 
-### Check truffle
+
+## Workshop
+
+###1. Check truffle
 
 1. เปิด Terminal (Powershell) 
 2. รันคำสั่งเช็คเวอร์ชั่นของ truffle
@@ -22,14 +25,14 @@
 truffle --version
 ```
 
-3. ถ้ายังไม่ได้ติดตั้ง ให้รันคำสั่ง
+3. ถ้ายังไม่ได้ติดตั้ง `truffle` ให้รันคำสั่ง
 
 ```pwsh
 npm i -g truffle
 npm i -g ganache-cli
 ```
 
-### Let's try Smart Contract
+###2. Let's deploy Smart Contract
 
 1. เปิดโฟลเดอร์ workshop **greetingTruffle** ใน Terminal
 2. สังเกตดูโครงสร้างของโปรเจค
@@ -48,46 +51,49 @@ truffle migrate --network ganache
 truffle console --network ganache
 ```
 
-7. รันคำสั่งดู Address ของ Smart Contract 
+###3. ดูรายละเอียดของ Smart Contract ใน Network
+
+1. รันคำสั่งดู Address ของ Smart Contract 
 
 ```js
 Greetings.address
 ```
 
-8. รันคำสั่งดึง Smart Contract มาเก็บไว้ในตัวแปร `app`
+2. รันคำสั่งดึง Smart Contract มาเก็บไว้ในตัวแปร `app`
 
 ```js
 Greetings.deployed().then(function(instance){ app = instance;})
 ```
 
-9. รันคำสั่งเรียกดู Smart Contract ในตัวแปร `app`
+3. รันคำสั่งเรียกดู Smart Contract ในตัวแปร `app`
 
 ```js
 app
 ```
 
-10. รันคำสั่งเรียกใช้ Function ใน Smart Contract `getGreeting()`
+###4. ใช้งาน Function ที่เขียนไว้ใน Smart Contract
+
+1. รันคำสั่งเรียกใช้ Function ใน Smart Contract `getGreeting()`
 
 ```js
 app.getGreeting()
 ```
 
-11. รันคำสั่งเรียกใช้ Function ใน Smart Contract `setGreeting(msg)`
+2. รันคำสั่งเรียกใช้ Function ใน Smart Contract `setGreeting(msg)`
 
 ```js
 account0 = (await web3.eth.getAccounts())[0]
 app.setGreeting("Hello Nextflow", {from: account0})
 ```
 
-
-12. กลับมาที่ Ganache และสังเกตความเปลี่ยนแปลง
-13. รันคำสั่งเรียกใช้ Function ใน Smart Contract `getGreeting()` อีกครั้ง
+3. กลับมาที่ Ganache และสังเกตความเปลี่ยนแปลง
+4. รันคำสั่งเรียกใช้ Function ใน Smart Contract `getGreeting()` อีกครั้ง
 
 ```js
 app.getGreeting()
 ```
 
-14. ทดลองรันคำสั่งเรียกใช้ Function ใน Smart Contract `setGreeting(msg)` โดยเปลี่ยนหมายเลข Account และสังเกตการเปลี่ยนแปลง
+5. ทดลองรันคำสั่งเรียกใช้ Function ใน Smart Contract `setGreeting(msg)` โดยเปลี่ยนหมายเลข Account และสังเกตการเปลี่ยนแปลง
 
 ```js
 account1 = (await web3.eth.getAccounts())[1]
@@ -97,3 +103,5 @@ app.setGreeting("Tony Stark", {from: account1})
 account2 = (await web3.eth.getAccounts())[2]
 app.setGreeting("I'm number one", {from: account1})
 ```
+
+
