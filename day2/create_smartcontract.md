@@ -1,8 +1,8 @@
 # Create Smart Contract with truffle
 
-1. สร้างโฟลเดอร์ `Training/GreetingsTruffle`
-2. เปิด terminal มาที่โฟลเดอร์ดังกล่าว
-3. รันคำสั่ง check `truffle version`
+1. สร้างโฟลเดอร์ `training/GreetingsTruffle`
+2. เปิด Powershell หรือ Terminal มาที่โฟลเดอร์ดังกล่าว
+3. รันคำสั่ง check `truffle --version`
 4. รันคำสั่ง `truffle init`
 
 ## structure
@@ -10,9 +10,9 @@
 - **Contracts** ใช้ track การ deploy contract ใน network ต่างๆ และกันไม่ให้ contract สูญหาย
 - **migrations** เก็บ logic ที่ใช้ในการ deploy smart contract
 - **test** เก็บ test Script 
-- `truffle.js` กำหนดค่า environment และ network ปกติจะโล่ง นอกจากจะมากำหนดเพิ่ม
+- `truffle-config.js` กำหนดค่า environment และ network ปกติจะโล่ง นอกจากจะมากำหนดเพิ่ม
 
-## สร้างไฟล์ Smart Contract
+##1. สร้างไฟล์ Smart Contract
 
 1. สร้างไฟล์ใหม่ในโฟลเดอร์ `Contracts`
 2. ตั้งชื่อไฟล์ว่า `greetings.sol`
@@ -20,7 +20,7 @@
 
 ```js
 //solium-disable linebreak-style
-pragma solidity ^0.4.18;
+pragma solidity ^0.5.8;
 
 contract Greetings {
     string message;
@@ -29,17 +29,17 @@ contract Greetings {
         message = "OK!";
     }
 
-    function setGreeting(string _message) public {
+    function setGreeting(string memory _message) public {
         message = _message;
     }
 
-    function getGreeting() public view returns (string) {
+    function getGreeting() public view returns (string memory) {
         return message;
     }
 }
 ```
 
-## สร้างไฟล์ Migration
+##2. สร้างไฟล์ Migration
 
 1. สร้างไฟล์ใหม่ในโฟลเดอร์​ `migrations`
 2. ตั้งชื่อว่า `2_deploy_contract.js`
@@ -53,18 +53,18 @@ module.exports = function(deployer){
 }
 ```
 
-## เปิด develop mode
+##3. เปิด develop mode
 
 1. จาก terminal โปรเจค
 2. รันคำสั่ง `truffle develop --log`
 3. จะเห็นว่า truffle ใช้กลไกเดียวกับ Ganash โดยการสร้าง 10 account ขึ้นมา
 
-## คำสั่ง truffle
+##4. คำสั่ง truffle
 
 คำสั่งที่แก้ปัญหาส่วนใหญ่ได้ โดยการสั่ง compile contract ทั้งหมด และ deploy ใหม่ตาม script 
 
 ```pwsh
-migrate --compile-all --reset
+truffle migrate --compile-all --reset
 ```
 
 1. รันคำสั่ง `truffle develop —log` ใน terminal 
@@ -76,19 +76,19 @@ migrate --compile-all --reset
 
 > คำสั่ง migrate จะไม่ re-deploy หรือ compile contract ถ้ามีการ deploy ใน network นี้ก่อนหน้าแล้ว
 
-## ใช้งาน Contracts จาก Develop console
+##5. ใช้งาน Contracts จาก Develop console
 
 1. จาก develop console สั่ง `Greetings.address` 
 2. จะเห็น address ของ contract แสดงขึ้นมา
 3. ลองดูในโปรเจค จะเห็นโฟลเดอร์ `build` ในนี้จะมีไฟล์ json ที่แสดงรายละเอียดของ contract ต่างๆ 
 4. ลองเปิดไฟล์ `Greetings.json` ด้านล่างสุด จะเห็นส่วนระบุข้อมูล network ในที่นี้เป็นของ truffle develop 
 
-## ทดสอบเรียกใช้งาน Contract
+##6. ทดสอบเรียกใช้งาน Contract
 
 จาก develop console รันคำสั่ง
 
 ```js
-(develop)> Greetings.deployed().then(function(instance){ app = instance;})
+Greetings.deployed().then(function(instance){ app = instance;})
 ```
 
 ทดสอบรันคำสั่ง `app` จะเห็นรายละเอียดของ Contract รวมถึง function ที่เราประกาศไว้ใน contract ด้วย
@@ -102,7 +102,8 @@ migrate --compile-all --reset
 ทดสอบเปลี่ยน contract state ด้วยคำสั่ง
 
 ```js
-app.setGreeting("Hello Nextflow", {from: web3.eth.accounts[0]})
+account1 = (await web3.eth.getAccounts())[0]
+app.setGreeting("Hello Nextflow", {from: account1})
 ```
 
 จะได้ transaction message กลับมา

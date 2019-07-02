@@ -18,10 +18,11 @@
 5. รันคำสั่งเพื่อดูค่า Ether ใน Account 
 
 ```js
+account1 = (await web3.eth.getAccounts())[0]
+web3.fromWei(web3.eth.getBalance(account1)).toNumber()
 
-web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0])).toNumber()
-
-web3.fromWei(web3.eth.getBalance(web3.eth.accounts[1])).toNumber()
+account2 = (await web3.eth.getAccounts())[1]
+web3.fromWei(web3.eth.getBalance(account2)).toNumber()
 ```
 
 6. ดึง Smart Contract มาใช้งาน
@@ -33,7 +34,7 @@ Greetings.deployed().then(function(instance) {app = instance})
 7. ทดสอบ `getGreeting()` โดยใช้ account ที่ 2
 
 ```js
-app.getGreetings({from: web3.eth.accounts[1]})
+app.getGreetings({from: account2})
 ```
 
 8. เช็ค eth ในแอคเค้าที่ 2 จะเห็นว่าไม่มีการใช้ eth 
@@ -42,7 +43,7 @@ app.getGreetings({from: web3.eth.accounts[1]})
 
 ```js
 
-web3.fromWei(web3.eth.getBalance(web3.eth.accounts[1])).toNumber()
+web3.fromWei(web3.eth.getBalance(account2)).toNumber()
 ```
 
 9. ทดสอบเปลี่ยน state ของ Smart Contract โดยใช้คำสั่งด้านล่าง
@@ -50,7 +51,7 @@ web3.fromWei(web3.eth.getBalance(web3.eth.accounts[1])).toNumber()
 สังเกตว่ามีค่า gas แสดงขึ้นมา โดยให้เช็คใน console และ ganache ว่า account ที่ 2 มีการเปลี่ยนแปลง และมี Transaction ปรากฎขึ้นมาในแท็บ Transaction
 
 ```js
-app.setGreeting("I pay something", { from: web3.eth.accounts[1] } );
+app.setGreeting("I pay something", { from: account2 } );
 ```
 
 

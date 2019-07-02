@@ -2,7 +2,7 @@
 
 1. ปิด truffle develop ทั้งหมด (รวมถึง --log ด้วย)
 2. เปิด Ganache
-3. เปิดไฟล์ `truffle.js` และเขียนรายละเอียด ganache ลงไป และบันทึกไฟล์
+3. เปิดไฟล์ `truffle-config.js` และเขียนรายละเอียด ganache ลงไป และบันทึกไฟล์
 
 ```js
 module.exports = {
@@ -51,7 +51,8 @@ Greetings.deployed().then(function(instance){ app = instance;})
 ทดสอบเปลี่ยน contract state ด้วยคำสั่ง
 
 ```js
-app.setGreeting("Hello Nextflow", {from: web3.eth.accounts[0]})
+account1 = (await web3.eth.getAccounts())[0]
+app.setGreeting("Hello Nextflow", {from: account1})
 ```
 
 และทดสอบค่าใน Contract
