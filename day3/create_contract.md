@@ -3,7 +3,7 @@
 - boxes เป็น template สำหรับสร้าง  web frontend 
 
 
-## สร้าง Smart Contract
+##1. สร้าง Smart Contract
 
 1. สร้างโฟลเดอร์ `training/shopper`
 2. ใช้ terminal เปิดมาที่ `training/shopper`
@@ -18,8 +18,7 @@ truffle unboxes teerasej/shopper-box
 6. เขียน Contract ด้านล่าง
 
 ```js
-//solium-disable linebreak-style
-pragma solidity ^0.4.18;
+pragma solidity ^0.5.8;
 
 contract ChainList {
     
@@ -30,7 +29,7 @@ contract ChainList {
     uint256 price;
 
 	// Sell thing info
-    function sellArticle(string _name, string _description, uint256 _price) public {
+    function sellArticle(string memory _name, string memory _description, uint256 _price) public {
         seller = msg.sender;
         name = _name;
         description = _description;
@@ -41,8 +40,8 @@ contract ChainList {
     function getArticle() public view returns (
         address _seller,
         address _buyer,
-        string _name,
-        string _description,
+        string memory _name,
+        string memory _description,
         uint256 _price
     ) {
 
@@ -57,6 +56,37 @@ contract ChainList {
 - **view** เป็น modifier keyword ที่หมายถึง function ดังกล่าวจะไม่มีการเปลี่ยนแปลงค่าใน Contract (ไม่มีการเสียค่า Gas และไม่เกิด Transaction)
 
 7. บันทึกไฟล์
+8. แก้ไขไฟล์ `Migration.sol` ให้เป็นเวอร์ชั่น 0.5.8
+
+```js
+pragma solidity ^0.5.8;
+
+contract Migrations {
+  address public owner;
+  uint public last_completed_migration;
+
+  modifier restricted() {
+    if (msg.sender == owner) _;
+  }
+
+  constructor() public {
+    owner = msg.sender;
+  }
+
+  function setCompleted(uint completed) public restricted {
+    last_completed_migration = completed;
+  }
+
+  function upgrade(address new_address) public restricted {
+    Migrations upgraded = Migrations(new_address);
+    upgraded.setCompleted(last_completed_migration);
+  }
+}
+
+```
+
+##2. สร้างคำสั่ง Migration
+
 8. เปิดโฟลเดอร์ `migrations`
 9. สร้างไฟล์ `2_deploy_contract.js`
 
@@ -71,7 +101,7 @@ module.exports = function(deployer) {
 10. บันทึกไฟล์
 
 
-## Deploy
+##2. Deploy
 
 1. เปิด Ganache 
 2. เปิด Terminal ในโปรเจค GreetingTruffle 
@@ -88,18 +118,21 @@ module.exports = function(deployer) {
 จะเห็นว่าบัญชีแรกเสีย eth ไปสำหรับการ deploy Smart Contract
 
 ```js
+account0 = (await web3.eth.getAccounts())[0]
+balance0 = await web3.eth.getBalance(account0)
+web3.utils.fromWei(balance0,'ether')
 
-web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0])).toNumber()
-
-web3.fromWei(web3.eth.getBalance(web3.eth.accounts[1])).toNumber()
+account1 = (await web3.eth.getAccounts())[1]
+balance1 = await web3.eth.getBalance(account1)
+web3.utils.fromWei(balance1,'ether')
 ```
 
 3. รันคำสั่งเพื่ออ้างถึง Smart Contract และดู function ของ Smart Contract
 
 ```js
-> Greetings.deployed().then(function(instance) {app = instance})
+Greetings.deployed().then(function(instance) {app = instance})
 
-> app
+app
 ```
 
 4. ทดสอบดูค่าใน Smart Contract
@@ -117,7 +150,7 @@ app.sellArticle(
 	"iPhone Xs",  
 	"Selling for iPhone Xs. 2", 
 	web3.toWei(3, "ether"),
-	{ from: web3.eth.accounts[1] } 
+	{ from: account1 } 
 )
 ```
 
@@ -132,10 +165,9 @@ app.getArticle()
 7. เรียกดูค่า eth ใน account ทั้ง 2 อีกครั้ง
 
 ```js
+web3.utils.fromWei(balance0,'ether')
 
-web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0])).toNumber()
-
-web3.fromWei(web3.eth.getBalance(web3.eth.accounts[1])).toNumber()
+web3.utils.fromWei(balance1,'ether')
 ```
 
 
