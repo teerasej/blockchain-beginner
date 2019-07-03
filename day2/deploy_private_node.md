@@ -1,6 +1,6 @@
 # ตั้ง Node บน Windows
 
-##1. สร้าง Genesis Block 
+## 1. สร้าง Genesis Block 
 
 1. สร้าง folder ผ่าน Powershell
 
@@ -31,7 +31,7 @@ nextflow_network
 8. กำหนด network ID เป็น `4224`
 
 
-##2. Export genesis block
+## 2. Export genesis block
 
 1. เลือก `2. Manage existing genesis`
 2. เลือก `2. Export genesis configuration`
@@ -47,7 +47,7 @@ INFO [07-02|21:45:28.153] Saved genesis chain spec                 client=harmon
 
 5. เรียบร้อยแล้วให้ปิด puppeth โดยการใช้ Ctrl + C
 
-##3. สร้าง Private Node
+## 3. สร้าง Private Node
 
 รันคำสั่งสร้างโปรเจคที่จัดการข้อมูลใน Private Node
 
@@ -60,7 +60,7 @@ geth --datadir . init nextflow_network.json
 - folder **geth** เก็บ network
 - folder **keystore** เก็บ account
 
-##4. สร้าง account
+## 4. สร้าง account
 
 รันคำสั่งสร้าง Account ใน Node
 
@@ -96,7 +96,7 @@ ls
 geth --datadir . account list
 ```
 
-##5. สั่งเปิด private node
+## 5. สั่งเปิด private node
 
 1. [Download ไฟล์คำสั่ง](https://www.dropbox.com/s/gafk3ylkmywi9uh/startnode.cmd.zip?dl=0)
 2. แตกไฟล์คำสั่งไปไว้ในโฟลเดอร​์ `private`
@@ -108,29 +108,29 @@ geth --datadir . account list
 .\startnode.cmd
 ```
 
-##6. ติดต่อกับ Private Node ผ่าน JavaScript Console
+## 6. ติดต่อกับ Private Node ผ่าน JavaScript Console
 
-1.  เปิดหน้าต่างโปรแกรม Powershell ใหม่ 
+เปิดหน้าต่างโปรแกรม Powershell ใหม่ 
 
 ```pwsh
 geth attach ipc:\\.\pipe\geth.ipc
 ```
 
-2. รันคำสั่งดูข้อมูลใน Private Node
+รันคำสั่งดูข้อมูลใน Private Node
 
 ```js
 eth.accounts
 eth.coinbase
 ```
 
-3. ดูจำนวน ether ใน account
+ดูจำนวน ether ใน account
 
 ```js
 eth.getBalance(eth.coinbase)
 eth.getBalance(eth.accounts[1])
 ```
 
-4. แปลงค่า Wei เป็น Ether
+แปลงค่า Wei เป็น Ether
 
 ```js
 web3.fromWei(eth.getBalance(eth.coinbase), "ether");

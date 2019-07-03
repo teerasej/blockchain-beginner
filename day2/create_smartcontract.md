@@ -12,7 +12,7 @@
 - **test** เก็บ test Script 
 - `truffle-config.js` กำหนดค่า environment และ network ปกติจะโล่ง นอกจากจะมากำหนดเพิ่ม
 
-##1. สร้างไฟล์ Smart Contract
+## 1. สร้างไฟล์ Smart Contract
 
 1. สร้างไฟล์ใหม่ในโฟลเดอร์ `Contracts`
 2. ตั้งชื่อไฟล์ว่า `greetings.sol`
@@ -39,7 +39,7 @@ contract Greetings {
 }
 ```
 
-##2. สร้างไฟล์ Migration
+## 2. สร้างไฟล์ Migration
 
 1. สร้างไฟล์ใหม่ในโฟลเดอร์​ `migrations`
 2. ตั้งชื่อว่า `2_deploy_contract.js`
@@ -53,13 +53,13 @@ module.exports = function(deployer){
 }
 ```
 
-##3. เปิด develop mode
+## 3. เปิด develop mode
 
 1. จาก terminal โปรเจค
 2. รันคำสั่ง `truffle develop --log`
 3. จะเห็นว่า truffle ใช้กลไกเดียวกับ Ganash โดยการสร้าง 10 account ขึ้นมา
 
-##4. คำสั่ง truffle
+## 4. คำสั่ง truffle
 
 คำสั่งที่แก้ปัญหาส่วนใหญ่ได้ โดยการสั่ง compile contract ทั้งหมด และ deploy ใหม่ตาม script 
 
@@ -76,14 +76,14 @@ truffle migrate --compile-all --reset
 
 > คำสั่ง migrate จะไม่ re-deploy หรือ compile contract ถ้ามีการ deploy ใน network นี้ก่อนหน้าแล้ว
 
-##5. ใช้งาน Contracts จาก Develop console
+## 5. ใช้งาน Contracts จาก Develop console
 
 1. จาก develop console สั่ง `Greetings.address` 
 2. จะเห็น address ของ contract แสดงขึ้นมา
 3. ลองดูในโปรเจค จะเห็นโฟลเดอร์ `build` ในนี้จะมีไฟล์ json ที่แสดงรายละเอียดของ contract ต่างๆ 
 4. ลองเปิดไฟล์ `Greetings.json` ด้านล่างสุด จะเห็นส่วนระบุข้อมูล network ในที่นี้เป็นของ truffle develop 
 
-##6. ทดสอบเรียกใช้งาน Contract
+## 6. ทดสอบเรียกใช้งาน Contract
 
 จาก develop console รันคำสั่ง
 

@@ -130,7 +130,7 @@ web3.utils.fromWei(balance1,'ether')
 3. รันคำสั่งเพื่ออ้างถึง Smart Contract และดู function ของ Smart Contract
 
 ```js
-Greetings.deployed().then(function(instance) {app = instance})
+ChainList.deployed().then(function(instance) {app = instance})
 
 app
 ```
