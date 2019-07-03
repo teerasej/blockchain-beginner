@@ -90,7 +90,7 @@ reloadArticles: function () {
           App.contracts.ChainList.deployed().then(function (instance) {
                return instance.getArticle();
           }).then(function (article) {
-               if (article[0] == address(0x0)) {
+               if (article[0] == 0x0) {
                     
                     return;
                }
@@ -109,15 +109,12 @@ reloadArticles: function () {
                var seller = article[0];
                if (seller == App.account) {
                     seller = "You";
-                    $('#sellArticle').hide();
-               } else {
-                    $('#sellArticle').show();
                }
                articleTemplate.find('.article-seller').text(seller);
 
                 // เพิ่มส่วนแสดงผลของ buyer
                 var buyer = article[1];
-                if(buyer == 0X0){
+                if(buyer == 0x0){
                     buyer = "No one yet";
                 } else if(buyer == App.account) {
                     buyer = "You";
