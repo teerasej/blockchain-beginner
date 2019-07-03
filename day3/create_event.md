@@ -185,8 +185,6 @@ buyArticle: function() {
         value: web3.toWei(_price, "ether"),
         gas: 500000
       });
-    }).then(function(){
-      App.reloadArticles();
     }).catch(function(error) {
       console.error(error);
     });
