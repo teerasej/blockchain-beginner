@@ -15,8 +15,7 @@ npm install
 npm run dev
 ```
 
-4. เปิดไฟล์ `package.json`
-5. แก้ไขชื่อโปรเจค, เวอร์ชั่น, และช่ื่อเจ้าของเป็นของเรา
+4. ระบบจะเปิด Web Browser ขึ้นมาแสดงหน้าเว็บต้นแบบ
 
 ## 2. สร้าง User Interface
 
@@ -47,6 +46,7 @@ init: function() {
           articleTemplate.find('.article-description').text('Description for article 1');
           articleTemplate.find('.article-price').text('10.23');
           articleTemplate.find('.article-seller').text('0x123456');
+          articleTemplate.find('.article-buyer').text('0x123456')
 
           articlesRow.append(articleTemplate.html());
 
@@ -54,7 +54,7 @@ init: function() {
      },
 ```
 
-## ปรับแต่ง CSS
+## 4. ปรับแต่ง CSS
 
 1. สร้างไฟล์ `src\css\app.css`
 2. เขียน CSS Rule 
@@ -70,3 +70,7 @@ body {
     padding: 5px;
 }
 ```
+
+## 5. ทดสอบหน้าเว็บแอพ
+
+ทำการ refresh หน้าเว็บเพื่อให้เป็นตัวอย่างของ Contract เวลาแสดงขึ้นมาบนหน้าเว็บ

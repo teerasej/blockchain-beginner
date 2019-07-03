@@ -23,14 +23,15 @@ pragma solidity ^0.5.8;
 contract ChainList {
     
     address buyer;
-    address seller;
+    address payable seller;
     string name;
     string description;
-    uint256 price;
+    uint price;
 
 	// Sell thing info
-    function sellArticle(string memory _name, string memory _description, uint256 _price) public {
+    function sellArticle(string memory _name, string memory _description, uint _price) public {
         seller = msg.sender;
+        buyer = address(0x0);
         name = _name;
         description = _description;
         price = _price;
@@ -42,7 +43,7 @@ contract ChainList {
         address _buyer,
         string memory _name,
         string memory _description,
-        uint256 _price
+        uint _price
     ) {
 
         return (seller, buyer, name, description, price);

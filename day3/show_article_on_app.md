@@ -16,15 +16,28 @@ init: function() {
 
 ```js
 initWeb3: async function () {
-
-          if(typeof web3 !== undefined){
-               App.web3Provider = web3.currentProvider;
-          } else {
-               App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+     if (window.ethereum) {
+          App.web3Provider = window.ethereum;
+          try {
+               // Request account access
+               await window.ethereum.enable();
+          } catch (error) {
+               // User denied account access...
+               console.error("User denied account access")
           }
-          web3 = new Web3(App.web3Provider);
-          App.displayAccountInfo();
-          return await App.initContract();
+     }
+     // Legacy dapp browsers...
+     else if (window.web3) {
+          App.web3Provider = window.web3.currentProvider;
+     }
+     else {
+          console.log('MetaMask not ready, use ganache');
+          App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+     }
+     console.log('Web3 provider:', App.web3Provider)
+     web3 = new Web3(App.web3Provider);
+     App.displayAccountInfo();
+     return await App.initContract();
 },
 ```
 
@@ -50,53 +63,59 @@ App = {
 9. เขียนโค้ดใช้ web3 ดึงค่าออกมาจากระบบ ในที่นี้คือ หมายเลข Account และจำนวน Ether 
 
 ```js
-displayAccountInfo: function() {
+displayAccountInfo: async function () {
 
-        web3.eth.getCoinbase(function(err, balance){
-              if(err === null){
-                  console.log("No error");
+     web3.eth.getCoinbase(function (err, balance) {
+          if (err === null) {
+               console.log("No error", balance);
 
-                  App.account = balance;
-                  console.log(balance);
-                  $('#account').text(balance);
+               App.account = balance;
+               console.log(balance);
+               $('#account').text(balance);
 
-                  web3.eth.getBalance(balance, function(err, balance){
-                        if(err === null){
-                              console.log(balance, " Wei");
-                              var ether = web3.fromWei(balance, "ether");
-                              $("#accountBalance").text(ether + " Eth");
-                        } else {
-                              console.log(err);
-                        }
-                  })
+               web3.eth.getBalance(balance, function (err, balance) {
+                    if (err === null) {
+                         // console.log(balance, " Wei");
+                         var ether = web3.fromWei(balance, "ether");
+                         $("#accountBalance").text(ether + " Eth");
+                    } else {
+                         console.log(err);
+                    }
+               })
 
-              } else {
-                  console.log(err);
-              }
-        })
-
-     },
+          } else {
+               console.log(err);
+          }
+     })
+},
 ```
 
 10. เขียน function `initContract()`
 
 ```js
 initContract: function() {
-        $.getJSON('ChainList.json', function(chainListArtifact) {
-          // สร้าง object ตัวแทนของ Smart Contract 
-          App.contracts.ChainList = TruffleContract(chainListArtifact);
-          // กำหนดแหล่งบัญชีผู้ใช้ที่จะทำงานกับ Contract
-          App.contracts.ChainList.setProvider(App.web3Provider);
-          // เรียกดูสินค้า
-          return App.reloadArticles();
-        });
-      },
+     $.getJSON('ChainList.json', function(chainListArtifact) {
+     // สร้าง object ตัวแทนของ Smart Contract 
+     App.contracts.ChainList = TruffleContract(chainListArtifact);
+     // กำหนดแหล่งบัญชีผู้ใช้ที่จะทำงานกับ Contract
+     App.contracts.ChainList.setProvider(App.web3Provider);
+     // เรียกดูสินค้า
+     return App.reloadArticles();
+     });
+},
 ```
 
 11. เขียน function `reloadArticles()`
 
 ```js
 reloadArticles: function () {
+     
+          // ป้องกันการโหลดข้อมูลซ้ำ
+          if(App.loading) {
+               return;
+          }
+          App.loading = true;
+
           // เรียกดูข้อมูลผู้ใช้
           App.displayAccountInfo();
 
@@ -117,7 +136,8 @@ reloadArticles: function () {
                var articleTemplate = $('#articleTemplate');
                articleTemplate.find('.panel-title').text(article[2]);
                articleTemplate.find('.article-description').text(article[3]);
-               articleTemplate.find('.article-price').text(web3.fromWei(article[4], "ether"));
+               var price = web3.fromWei(article[4], "ether");
+               articleTemplate.find('.article-price').text(price);
 
                var seller = article[0];
                if (seller == App.account) {

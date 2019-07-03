@@ -1,4 +1,4 @@
-# ทำงานกับ Event 
+# ทำงานกับ Event ใน Smart Contract
 
 ## 1. สร้าง Event ใน Smart Contract
 
@@ -10,25 +10,25 @@
   event LogSellArticle(
     address indexed _seller,
     string _name,
-    uint256 _price
+    uint _price
   );
   event LogBuyArticle(
     address indexed _seller,
     address indexed _buyer,
     string _name,
-    uint256 _price
+    uint _price
   );
 ```
 3. ใน function `sellArticle()` ให้เรียกใช้ event function `LogSellArticle()` เพื่อแจ้งเตือนระบบ
 
 ```js
-function sellArticle(string _name, string _description, uint256 _price) public {
+function sellArticle(string memory _name, string memory _description, uint _price) public {
     seller = msg.sender;
     name = _name;
     description = _description;
     price = _price;
 
-    LogSellArticle(seller, name, price);
+    LogSellArticle(seller, name, _price);
 }
 ```
 
@@ -37,21 +37,19 @@ function sellArticle(string _name, string _description, uint256 _price) public {
 
 ```js
 // buy an article
-  function buyArticle() payable public {
+  function buyArticle() public payable  {
     
-    require(seller != 0x0);
+    require(seller != 0x0, "Seller should not be empty");
 
-    require(buyer == 0X0);
+    //require(buyer == 0X0, "Buyer should not be empty");
 
-    require(msg.sender != seller);
-
-    require(msg.value == price);
+    require(msg.sender != seller, "Buyer's address should not be seller");
+    require(msg.value == price, "given value should equal to item's price");
 
     buyer = msg.sender;
-
     seller.transfer(msg.value);
 
-    LogBuyArticle(seller, buyer, name, price);
+    emit LogBuyArticle(seller, buyer, name, price);
   }
 ```
 
@@ -81,6 +79,8 @@ initContract: function() {
 
 3. แก้ไข function `reloadArticles()`
 
+โดยการ **แทรกราคาเข้าไปในปุ่ม** และเพิ่มส่วนแสดงผลของ Buyer
+
 ```js
 reloadArticles: function () {
           App.displayAccountInfo();
@@ -90,7 +90,7 @@ reloadArticles: function () {
           App.contracts.ChainList.deployed().then(function (instance) {
                return instance.getArticle();
           }).then(function (article) {
-               if (article[0] == 0x0) {
+               if (article[0] == address(0x0)) {
                     
                     return;
                }
@@ -100,24 +100,27 @@ reloadArticles: function () {
                var articleTemplate = $('#articleTemplate');
                articleTemplate.find('.panel-title').text(article[2]);
                articleTemplate.find('.article-description').text(article[3]);
+               var price = web3.fromWei(article[4], "ether");
+               articleTemplate.find('.article-price').text(price); 
 
                // แทรกราคาเข้าไปใน ปุ่ม
-               var price = web3.fromWei(article[4], "ether");
-               articleTemplate.find('.article-price').text(price);
                articleTemplate.find('.btn-buy').attr('data-value', price);
 
                var seller = article[0];
                if (seller == App.account) {
                     seller = "You";
+                    $('#sellArticle').hide();
+               } else {
+                    $('#sellArticle').show();
                }
                articleTemplate.find('.article-seller').text(seller);
 
-                // เพิ่มส่วนของ buyer
+                // เพิ่มส่วนแสดงผลของ buyer
                 var buyer = article[1];
-                if(buyer == App.account){
-                    buyer = "You";
-                } else if(buyer == 0X0) {
+                if(buyer == 0X0){
                     buyer = "No one yet";
+                } else if(buyer == App.account) {
+                    buyer = "You";
                 }
                 articleTemplate.find('.article-buyer').text(buyer);
 
@@ -176,6 +179,8 @@ buyArticle: function() {
 
     // retrieve the article price
     var _price = parseFloat($(event.target).data('value'));
+    console.log("Item's Price: ", _price);
+    console.log("Buyer id:", App.account);
 
     App.contracts.ChainList.deployed().then(function(instance){
       return instance.buyArticle({
@@ -183,6 +188,8 @@ buyArticle: function() {
         value: web3.toWei(_price, "ether"),
         gas: 500000
       });
+    }).then(function(){
+      App.reloadArticles();
     }).catch(function(error) {
       console.error(error);
     });
