@@ -97,7 +97,7 @@ Greetings.deployed().then(function(instance){ app = instance;})
 
 > การเรียกใช้ `getGreeting()` ไม่ได้เป็นการเปลี่ยนแปลง contract (กำหนดไว้เป็น view method) ซึ่งจะไม่มีการส่ง transaction เข้าไปใน network เป็นแค่การเช็ค state ว่าจะเหมือนกันในทุก node
 
-## มาเปลี่ยน Contract State กัน
+## 7. มาเปลี่ยน Contract State กัน
 
 ทดสอบเปลี่ยน contract state ด้วยคำสั่ง
 
@@ -119,4 +119,47 @@ app.getGreeting()
 ```
 
 จะเห็นว่าข้อความเปลี่ยนไป
+
+## 8. ตัวอย่าง Profile contract
+
+```js
+//solium-disable linebreak-style
+pragma solidity ^0.5.8;
+
+contract Profiles {
+
+    string first;
+    string last;
+
+    constructor() public {
+        first = "Teerasej";
+        last = "Jiraphatchandej";
+    }
+
+    function setFirstName(string memory _new) public {
+        first = _new;
+    }
+
+    function getFirstName() public view returns (string memory) {
+        return first;
+    }
+
+    function setLastName(string memory _new) public {
+        last = _new;
+    }
+
+    function getLastName() public view returns (string memory) {
+        return last;
+    }
+
+    function getFullName() public view returns (string memory firstName, string memory lastName) {
+        return (firstName = first, lastName = last);
+    }
+
+    function setFullName(string memory _first, string memory _last) public {
+        first = _first;
+        last = _last;
+    }
+}
+```
 
