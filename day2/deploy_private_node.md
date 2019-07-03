@@ -136,4 +136,36 @@ eth.getBalance(eth.accounts[1])
 account0 = eth.accounts[0]
 balance0 = eth.getBalance(account0)
 web3.fromWei(balance0, "ether");
+
+account1 = eth.accounts[1]
+balance1 = eth.getBalance(account1)
+web3.fromWei(balance1, "ether");
+
+account2 = eth.accounts[2]
+balance2 = eth.getBalance(account2)
+web3.fromWei(balance2, "ether");
+```
+
+ลองโอนเงินจากบัญชี account0 (เรียกเล่นๆ ว่า coinbase) ไปยัง account1
+
+```js
+eth.sendTransaction({ from: account0, to:account1, value: web3.toWei(3,"ether") })
+```
+
+ถ้าเราพยายามโอนเงินจากบัญชีอื่น... 
+
+```js
+eth.sendTransaction({ from: account1, to:account2, value: web3.toWei(1,"ether") })
+```
+
+จะเจอ error แบบนี้
+
+```bash
+Error: authentication needed: password or unlock
+```
+
+ต้อง unlock ด้วย password ของ account นั้นก่อน
+
+```js
+personal.unlockAccount(account1, "123456")
 ```
