@@ -133,5 +133,7 @@ eth.getBalance(eth.accounts[1])
 แปลงค่า Wei เป็น Ether
 
 ```js
-web3.fromWei(eth.getBalance(eth.coinbase), "ether");
+account0 = eth.accounts[0]
+balance0 = eth.getBalance(account0)
+web3.fromWei(balance0, "ether");
 ```
