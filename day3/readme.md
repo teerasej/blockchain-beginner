@@ -1,4 +1,4 @@
-# Connect the Application 
+# Create the DApp 
 
 ## Resource 
 

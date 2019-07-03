@@ -1,4 +1,4 @@
-#  Deploy Smart Contract เข้า Ganash Network
+#  รัน Smart Contract บน Network เป้าหมาย
 
 1. ปิด truffle develop ทั้งหมด (รวมถึง --log ด้วย)
 2. เปิด Ganache

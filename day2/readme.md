@@ -9,9 +9,9 @@
 
 ## Learning Path
 
-1. [Deploy Private Node](deploy_private_node.md)
-2. [สร้าง Smart Contract](create_smartcontract.md)
+1. [Deploy the Private Node](deploy_private_node.md)
+2. [Create Smart Contract with truffle](create_smartcontract.md)
 3. [รัน Smart Contract บน Network เป้าหมาย](deploy_smartcontract_with_network.md)
 4. [ค่า Gas](gas.md)
-5. [Transaction](transaction_block.md)
-6. [Transfer Ether](transfer_eth.md)
+5. [ดูรายละเอียดของ Transaction และ Block](transaction_block.md)
+6. [การโอนและส่ง Ethereum](transfer_eth.md)

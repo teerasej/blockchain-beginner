@@ -1,4 +1,4 @@
-# ตั้ง Node บน Windows
+# Deploy the Private Node
 
 ## 1. สร้าง Genesis Block 
 

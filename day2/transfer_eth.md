@@ -1,4 +1,4 @@
-# การโอนและส่ง Eth 
+# การโอนและส่ง Ethereum
 
 . เปิด Ganache 
 2. เปิด Terminal ในโปรเจค GreetingTruffle 
