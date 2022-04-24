@@ -16,7 +16,7 @@
 
 ## Workshop
 
-###1. Check truffle
+### 1. Check truffle
 
 1. เปิด Terminal (Powershell) 
 2. รันคำสั่งเช็คเวอร์ชั่นของ truffle
@@ -32,7 +32,7 @@ npm i -g truffle
 npm i -g ganache-cli
 ```
 
-###2. Let's deploy Smart Contract
+### 2. Let's deploy Smart Contract
 
 1. เปิดโฟลเดอร์ workshop **greetingTruffle** ใน Terminal
 2. สังเกตดูโครงสร้างของโปรเจค
@@ -51,7 +51,7 @@ truffle migrate --network ganache
 truffle console --network ganache
 ```
 
-###3. ดูรายละเอียดของ Smart Contract ใน Network
+### 3. ดูรายละเอียดของ Smart Contract ใน Network
 
 1. รันคำสั่งดู Address ของ Smart Contract 
 
@@ -71,7 +71,7 @@ Greetings.deployed().then(function(instance){ app = instance;})
 app
 ```
 
-###4. ใช้งาน Function ที่เขียนไว้ใน Smart Contract
+### 4. ใช้งาน Function ที่เขียนไว้ใน Smart Contract
 
 1. รันคำสั่งเรียกใช้ Function ใน Smart Contract `getGreeting()`
 
