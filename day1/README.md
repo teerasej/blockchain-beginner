@@ -16,7 +16,7 @@
 
 ## Workshop
 
-### 1. Check truffle
+### 1. Check truffle version
 
 1. เปิด Terminal (Powershell) 
 2. รันคำสั่งเช็คเวอร์ชั่นของ truffle

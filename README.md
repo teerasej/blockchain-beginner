@@ -5,10 +5,13 @@ Example code workshop for Blockchain for developer training by https://www.nextf
 ## Resource
 
 - [Presentation](https://www.dropbox.com/s/kzoa891iv5dedif/Blockchain%20for%20Developer.pdf?dl=0)
-- [วิธีลงโปรแกรมต่างๆ](https://nextflow.in.th/2018/setup-window-for-ethereum-for-developer-training/)
+- วิธีลงโปรแกรมต่างๆ
+  - [วิธีลงโปรแกรมบน Windows](https://nextflow.in.th/2018/setup-window-for-ethereum-for-developer-training/)
+  - [วิธีลงโปรแกรมบน macOS](https://nextflow.in.th/2022/blockchain-for-developer-setup-macos-for-training/)
+
 
 ## Content
 
-1. [World of Blockchain](day1/README.md)
-2. [Start your Blockchain network](day2/readme.md)
-3. [Create the DApp](day3/readme.md)
+1. [Blockchain Fundamental](day1/README.md)
+2. [Solidity Fundamental](day2/readme.md)
+3. [Web3 Fundamental](day3/readme.md)
