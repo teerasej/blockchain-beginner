@@ -18,90 +18,64 @@
 
 ### 1. Check truffle version
 
-1. เปิด Terminal (Powershell) 
-2. รันคำสั่งเช็คเวอร์ชั่นของ truffle
-
-```pwsh
-truffle --version
-```
-
-3. ถ้ายังไม่ได้ติดตั้ง `truffle` ให้รันคำสั่ง
+1. เปิด Terminal (Command Line) 
+2. ถ้ายังไม่ได้ติดตั้ง `truffle` ให้รันคำสั่ง
 
 ```pwsh
 npm i -g truffle
 npm i -g ganache-cli
 ```
 
-### 2. Let's deploy Smart Contract
+บน MacOS อาจจะต้องใช้คำสั่ง `sudo`
 
-1. เปิดโฟลเดอร์ workshop **greetingTruffle** ใน Terminal
-2. สังเกตดูโครงสร้างของโปรเจค
-3. รันคำสั่ง deploy Smart Contract ตามตัวอย่าง
+```bash
+sudo npm i -g truffle
+sudo npm i -g ganache-cli
+```
 
+3. รันคำสั่งเช็คเวอร์ชั่นของ truffle
 
 ```pwsh
-truffle migrate --network ganache
+truffle --version
+```
+
+### 2. เริ่มการทำงานของ Ganache
+
+1. เปิดการทำงานของโปรแกรม Ganache
+2. เช็คการทำงานของ Port 
+
+
+### 3. สร้างโปรเจค Smart Contract
+
+1. สร้างโฟลเดอร์ **my-smart-contract**
+2. เปิดโฟลเดอร์ **my-smart-contract** ใน Terminal
+3. สังเกตดูโครงสร้างของโปรเจค
+4. เปิดไฟล์ **truffle-config.js**
+5. กำหนดข้อมูลส่วน network ตามรายละเอียดด้านล่าง
+
+```js
+module.exports = {
+    //...
+    development: {
+     host: "127.0.0.1",     // Localhost (default: none)
+     port: 7545,            // Standard Ethereum port (default: none)
+     network_id: "*",       // Any network (default: none)
+    },
+    //...
+}
+```
+
+6. รันคำสั่ง deploy Smart Contract ตามตัวอย่าง
+
+
+```bash
+truffle deploy --reset
 ```
 
 4. สังเกตดูค่า account 1 ใน Ganache 
 5. สังเกตโฟลเดอร์ build ในโปรเจค
-6. กลับมาที่ terminal รันคำสั่งเปิด Console 
 
-```pwsh
-truffle console --network ganache
-```
 
-### 3. ดูรายละเอียดของ Smart Contract ใน Network
 
-1. รันคำสั่งดู Address ของ Smart Contract 
-
-```js
-Greetings.address
-```
-
-2. รันคำสั่งดึง Smart Contract มาเก็บไว้ในตัวแปร `app`
-
-```js
-Greetings.deployed().then(function(instance){ app = instance;})
-```
-
-3. รันคำสั่งเรียกดู Smart Contract ในตัวแปร `app`
-
-```js
-app
-```
-
-### 4. ใช้งาน Function ที่เขียนไว้ใน Smart Contract
-
-1. รันคำสั่งเรียกใช้ Function ใน Smart Contract `getGreeting()`
-
-```js
-app.getGreeting()
-```
-
-2. รันคำสั่งเรียกใช้ Function ใน Smart Contract `setGreeting(msg)`
-
-```js
-account0 = (await web3.eth.getAccounts())[0]
-app.setGreeting("Hello Nextflow", {from: account0})
-```
-
-3. กลับมาที่ Ganache และสังเกตความเปลี่ยนแปลง
-4. รันคำสั่งเรียกใช้ Function ใน Smart Contract `getGreeting()` อีกครั้ง
-
-```js
-app.getGreeting()
-```
-
-5. ทดลองรันคำสั่งเรียกใช้ Function ใน Smart Contract `setGreeting(msg)` โดยเปลี่ยนหมายเลข Account และสังเกตการเปลี่ยนแปลง
-
-```js
-account1 = (await web3.eth.getAccounts())[1]
-
-app.setGreeting("Tony Stark", {from: account1})
-
-account2 = (await web3.eth.getAccounts())[2]
-app.setGreeting("I'm number one", {from: account1})
-```
 
 
