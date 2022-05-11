@@ -75,7 +75,45 @@ truffle deploy --reset
 4. สังเกตดูค่า account 1 ใน Ganache 
 5. สังเกตโฟลเดอร์ build ในโปรเจค
 
+### 4. Migration
 
+1. ทดสอบสร้างไฟล์ **HelloWorld.sol** ไว้ใน **contracts** directory
 
+```solidity
+pragma solidity >=0.4.22 <0.9.0;
 
+contract HelloWorld {
+    string private helloMessage = "Hello World";
+
+    function getHelloMessage() public view returns (string memory) {
+        return helloMessage;
+    }
+}
+```
+
+2. เพิ่มไฟล์ **2_deployHelloWorld.js** ไว้ใน **migrations** directory
+
+```js
+const HelloWorld = artifacts.require("HelloWorld");
+
+module.exports = function (deployer) {
+  deployer.deploy(HelloWorld);
+};
+```
+
+3. รันคำสั่ง migrate contract
+
+คำสั่ง migrate contract จะรันต่อจาก migration สุดท้ายที่ทำได้สมบูรณ์
+
+```
+truffle migrate
+```
+
+เราสามารถสั่งให้ truffle deploy contract ใหม่ตั้งแต่ต้นได้ผ่าน option `--reset`
+
+```
+truffle migrate --reset
+```
+
+ในอีกทางหนึ่งคำสั่ง `truffle develop` ก็สามารถรัน migration ได้เหมือนกัน
 

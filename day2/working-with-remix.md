@@ -42,3 +42,4 @@ contract HelloWorld {
 6. แสดงค่าที่คืนออกมาจาก contract
 
 <img width="370" alt="2022-05-09_17-23-14" src="https://user-images.githubusercontent.com/85179/167391540-903772bb-e8f4-47d7-ad46-3aae1dae9820.png">
+

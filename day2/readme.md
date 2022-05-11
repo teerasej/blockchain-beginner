@@ -8,13 +8,16 @@
 ## Learning Path
 
 1. [การใช้งาน Remix](working-with-remix.md)
-2. การใช้งาน Ganache
+2. [การใช้งาน Truffle Framework](../day1/README.md)
+3. [Data Type](data-type.md)
+4. [Calcuation](calculation-contract.md)
+5. [Token](create-our-token.md)
 
 ## Reference
 
 - [Deploy the Private Node](deploy_private_node.md)
 - [Create Smart Contract with truffle](create_smartcontract.md)
--  [รัน Smart Contract บน Network เป้าหมาย](deploy_smartcontract_with_network.md)
+- [รัน Smart Contract บน Network เป้าหมาย](deploy_smartcontract_with_network.md)
 - [ค่า Gas](gas.md)
 - [ดูรายละเอียดของ Transaction และ Block](transaction_block.md)
 - [การโอนและส่ง Ethereum](transfer_eth.md)
