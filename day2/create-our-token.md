@@ -24,14 +24,14 @@ interface ERC20Interface {
 }
 ```
 
-3. สร้างไฟล์ **MyCoin.sol** ไว้ใน **contracts** directory
+3. สร้างไฟล์ **PonCoin.sol** ไว้ใน **contracts** directory
 
 ```
 pragma solidity >=0.4.21 <0.9.0;
 
 import './erc20Interface.sol';
 
-contract ERC20Token is ERC20Interface {
+contract PonCoin is ERC20Interface {
 
     uint256 constant private MAX_UINT256 = 2**256 - 1;
     mapping (address => uint256) public balances;
@@ -123,3 +123,29 @@ module.exports = function (deployer) {
   deployer.deploy(PonCoin,1000000,"PonCoin", 18, "PCOIN");
 };
 ```
+
+## 5. import token เข้า MetaMask
+
+หาก deploy ด้วย truffle เราสามารถเอา contract address ได้จาก console หลังจากรัน `truffle migrate`
+
+```
+Deploying 'PonCoin'
+   -------------------
+   > transaction hash:    0x96ad24ba62e9d03b18a2bb87fac793606b7e42bb3ab6e1046eaa444cb671c57c
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x1B3B47493F8cea93dab01c45c3140D1A7194110e <-----
+   > block number:        2
+   > block timestamp:     1652236292
+   > account:             0x7beA63D43813CFF9D5e2CB00F62F867b8F8F422C
+   > balance:             99.97412514
+   > gas used:            1044901 (0xff1a5)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02089802 ETH
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.02587486 ETH
+```
+
