@@ -6,7 +6,7 @@
 ทำการโคลนโปรเจคมาจาก [repo](https://github.com/teerasej/nextflow-nextjs-web3-event-simple)
 
 ```
-git clone --branch start https://github.com/teerasej/nextflow-nextjs-web3-event-simple
+git clone https://github.com/teerasej/nextflow-nextjs-web3-event-simple --branch start
 ```
 
 ทำการรันคำสั่งติดตั้ง package ตามที่ต้องการ
