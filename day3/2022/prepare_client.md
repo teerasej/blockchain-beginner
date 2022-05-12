@@ -21,7 +21,7 @@ yarn add
 
 ## 2. สร้างไฟล์ environment 
 
-สร้างไฟล์ **.dev.local** ขึ้นมาในโฟลเดอร์โปรเจค และทำการใส่ Smart contract address ที่ได้มาลงไป
+สร้างไฟล์ **.env.local** ขึ้นมาในโฟลเดอร์โปรเจค และทำการใส่ Smart contract address ที่ได้มาลงไป
 
 ```
 NEXT_PUBLIC_EVENT_CONTRACT_ADDRESS=<Smart contract address>
