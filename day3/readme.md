@@ -7,6 +7,12 @@
 
 ## Learning Path
 
+1. [สร้าง Contract](2022/create_contract.md)
+2. [เตรียม web client](2022/prepare_client.md)
+3. [การเรียนใช้งาน Smart Contract](2022/access_smart_contract.md)
+
+## Reference
+
 1. [สร้าง Contract](create_contract.md)
 2. [สร้าง Web Client](create_client.md)
 3. [แสดงรายการสินค้า (แสดงข้อมูล Contract จาก Network)](show_article_on_app.md)

@@ -120,7 +120,7 @@ contract PonCoin is ERC20Interface {
 ```js
 const PonCoin = artifacts.require("PonCoin");
 module.exports = function (deployer) {
-  deployer.deploy(PonCoin,1000000,"PonCoin", 18, "PCOIN");
+  deployer.deploy(PonCoin,100000000000000000000,"PonCoin", 18, "PCOIN");
 };
 ```
 
